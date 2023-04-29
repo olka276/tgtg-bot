@@ -1,0 +1,9 @@
+{
+  "tgtg": {},
+    "coordinates": {},
+    "blacklist": [],
+    "telegram": {
+        "bot_token": "",
+        "bot_chat_id": []
+    }
+}
