@@ -1,7 +1,5 @@
 import os
 import re
-import time
-import traceback
 from datetime import datetime
 
 from Core.Exception.ConfigException import ConfigException
