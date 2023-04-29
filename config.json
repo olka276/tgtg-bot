@@ -8,9 +8,11 @@
     "coordinates": {
         "latitude": "53.752627",
         "longitude": "20.489830",
-        "radius": "25"
+        "radius": "10"
     },
-    "blacklist": [],
+    "blacklist": [
+        "Piekarnia"
+    ],
     "telegram": {
         "bot_token": "5967258022:AAG7FMZRuvjfUh31S0Pt0aW24UKcdPcAksk",
         "bot_chat_id": [

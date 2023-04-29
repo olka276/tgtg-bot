@@ -3,21 +3,23 @@ import traceback
 
 import schedule
 
+from FoodsiBundle.Handler.FoodsiHandler import FoodsiHandler
 from TooGoodToGoBundle.Handler.TgtgHandler import TgtgHandler
 
-handler = TgtgHandler()
+tgtg_handler = TgtgHandler()
+foodsi_handler = FoodsiHandler()
 
 
-def refresh():
+def watch():
     try:
-        handler.handle()
-        print("refreshed")
+        tgtg_handler.handle()
+        foodsi_handler.handle()
     except:
         print(traceback.format_exc())
 
 
-schedule.every(30).seconds.do(refresh)
-refresh()
+schedule.every(30).seconds.do(watch)
+watch()
 while True:
     # run_pending
     schedule.run_pending()
