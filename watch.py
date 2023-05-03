@@ -16,7 +16,7 @@ def watch():
         print(traceback.format_exc())
 
 
-schedule.every(2).seconds.do(watch)
+schedule.every(15).seconds.do(watch)
 watch()
 while True:
     schedule.run_pending()

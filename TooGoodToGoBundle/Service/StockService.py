@@ -4,7 +4,7 @@ from TelegramBundle.Api import TelegramApi
 
 
 def compare(stocks, items):
-    blacklist = get_config_value()
+    blacklist = get_config_value("blacklist")
     for item in items:
         try:
             old_stock = [stock.amount for stock in stocks if stock.id == item.id][0]
