@@ -8,7 +8,6 @@ class FileHandler:
         filename = inspect.getframeinfo(inspect.currentframe()).filename
         path = os.path.dirname(os.path.abspath(filename))
         self._stream = open(os.path.join(path, file), mode='r+')
-        pass
 
     def get_json_data(self):
         return json.load(self._stream)

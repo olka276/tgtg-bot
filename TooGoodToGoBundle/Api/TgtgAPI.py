@@ -2,10 +2,11 @@ import traceback
 
 from Core.File.FileHandler import FileHandler
 from Core.Utils.TerminalColor import *
-from tgtg import TgtgClient
+from tgtg import TgtgClient, TgtgPollingError
 from Core.Utils.TerminalPrint import color_print
 from TooGoodToGoBundle.Parser.TgtgApiResponseParser import parse
 from definitions import CONFIG_PATH
+from Core.Config.ConfigGetter import get_config_value
 
 
 class TgtgAPI:
@@ -15,7 +16,7 @@ class TgtgAPI:
 
     def get_client(self):
         try:
-            config = self._config
+            config = get_config_value()
         except FileNotFoundError:
             print("Config.json file not found.")
             print(traceback.format_exc())
@@ -44,6 +45,8 @@ class TgtgAPI:
                     access_token=config['tgtg']['access_token'],
                     refresh_token=config['tgtg']['refresh_token'],
                     user_id=config['tgtg']['user_id'])
+            except TgtgPollingError:
+                color_print(TerminalColor.FAIL, "Given e-mail is not linked to TGTG Account/")
             except:
                 color_print(TerminalColor.FAIL, "Error during logging into polling.")
                 exit(1)
