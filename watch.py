@@ -10,7 +10,7 @@ foodsi_handler = FoodsiHandler()
 
 def watch():
     try:
-        # tgtg_handler.handle()
+        tgtg_handler.handle()
         foodsi_handler.handle()
     except:
         print(traceback.format_exc())

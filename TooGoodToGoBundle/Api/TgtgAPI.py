@@ -18,8 +18,7 @@ class TgtgAPI:
         try:
             config = get_config_value()
         except FileNotFoundError:
-            print("Config.json file not found.")
-            print(traceback.format_exc())
+            color_print(TerminalColor.FAIL, "Config.json file not found.")
             exit(1)
         except:
             color_print(TerminalColor.FAIL, "Unexpected error.")
@@ -33,6 +32,8 @@ class TgtgAPI:
                 user_id=config['tgtg']['user_id'],
                 cookie=config['tgtg']['cookie']
             )
+
+            return client
         except KeyError:
             try:
                 email = input("Type your TooGoodToGo email address: ")
@@ -44,14 +45,14 @@ class TgtgAPI:
                 client = TgtgClient(
                     access_token=config['tgtg']['access_token'],
                     refresh_token=config['tgtg']['refresh_token'],
-                    user_id=config['tgtg']['user_id'])
+                    user_id=config['tgtg']['user_id'],
+                    cookie=config['tgtg']['cookie'])
+                return client
             except TgtgPollingError:
                 color_print(TerminalColor.FAIL, "Given e-mail is not linked to TGTG Account/")
             except:
                 color_print(TerminalColor.FAIL, "Error during logging into polling.")
                 exit(1)
-
-        return client
 
     @staticmethod
     def fetch_items(client, latitude, longitude, radius):

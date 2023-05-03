@@ -26,10 +26,13 @@ class FoodsiHandler:
 
     def handle(self):
         self._coordinates_manager.get_coordinates()
+
         item_data = fetch_items()
         StockService.compare(self._stock, item_data)
+
         available_amount = get_available_amount(item_data)
         self._stock = item_data
+
         print(f"{datetime.now().strftime('%H:%M:%S')} - Foodsi: 200(OK). Items with stock: {available_amount} All items: {len(item_data)}")
         return item_data
 

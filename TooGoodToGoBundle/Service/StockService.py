@@ -37,11 +37,17 @@ def compare(stocks, items):
 
 
 def get_item_message(item: ItemDTO, new_stock):
-    return f"🍽 [{item.name}]({item.url})\n" \
-           f"💰 {item.current_price}PLN/{item.old_price}PLN\n" \
-           f"🫱 {new_stock}\n" \
-           f"⏰ {item.pick_up_from}-{item.pick_up_to}\n" \
-           "ℹ️ Foodsi"
+    message = f"🍽 [{item.name}]({item.url})\n"
+    message += f"📍 {item.address}\n"
+    message += f"💰 {item.current_price}PLN/{item.old_price}PLN\n"
+    message += f"🫱 {new_stock}\n"
+    if item.ratings is not None:
+        message += f"⭐️ {item.ratings}/5\n"
+    if item.pick_up_from is not None and item.pick_up_to is not None:
+        message += f"⏰ {item.pick_up_from}-{item.pick_up_to}\n"
+    message += f"💡 {item.other_details}\n"
+    message += "ℹ️ TooGoodToGo"
+    return message
 
 
 def get_sold_out_message(item: ItemDTO):
