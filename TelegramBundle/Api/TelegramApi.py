@@ -14,6 +14,7 @@ def get_config():
 
 
 def send(message):
+    print(message)
     config = get_config()["telegram"]
     for chat_id in config['bot_chat_id']:
         send_text = 'https://api.telegram.org/bot' + config[
