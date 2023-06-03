@@ -3,7 +3,7 @@ This bot lets you receiving Telegram notifications from TooGoodToGo and Foodsi A
 
 ## Configuration:
 1. cp config.example.json config.json
-2. pip install -r requirements.txt
+2. pip3 install -r requirements.txt
 3. Update your config file with telegram bot's token.
 4. python3 watch.py
 
