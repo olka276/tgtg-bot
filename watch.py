@@ -18,7 +18,7 @@ foodsi_handler = FoodsiHandler()
 
 def hello():
     logging.basicConfig(filename='logs.log', level=logging.INFO)
-    print("Hello! Welcome to FoodBot.")
+    # print("Hello! Welcome to FoodBot.")
     config = get_config_value()
     if len(config["telegram"]["bot_token"]) == 0:
         color_print(TerminalColor.FAIL, "Telegram token not found in config!")
@@ -29,20 +29,20 @@ def hello():
         }
 
         FileHandler(CONFIG_PATH).save(config)
-
-    print("[1] Start watching")
-    print("[2] Add chat ID")
-    option = input("")
-
-    if option == "2":
-        config = get_config_value()
-        TelegramApi.add_bot_chat_id(config)
-    elif option == "1":
-        schedule.every(15).seconds.do(watch)
-        watch()
-        while True:
-            schedule.run_pending()
-            time.sleep(1)
+    #
+    # print("[1] Start watching")
+    # print("[2] Add chat ID")
+    # option = input("")
+    #
+    # if option == "2":
+    #     config = get_config_value()
+    #     TelegramApi.add_bot_chat_id(config)
+    # elif option == "1":
+    schedule.every(15).seconds.do(watch)
+    watch()
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 
 def watch():
