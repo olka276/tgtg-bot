@@ -1,3 +1,4 @@
+import logging
 import time
 import traceback
 import schedule
@@ -16,6 +17,7 @@ foodsi_handler = FoodsiHandler()
 
 
 def hello():
+    logging.basicConfig(filename='logs.log', level=logging.INFO)
     print("Hello! Welcome to FoodBot.")
     config = get_config_value()
     if len(config["telegram"]["bot_token"]) == 0:
@@ -48,12 +50,8 @@ def watch():
         tgtg_handler.handle()
         foodsi_handler.handle()
     except:
+        logging.error(traceback.format_exc())
         print(traceback.format_exc())
 
 
 hello()
-# schedule.every(15).seconds.do(watch)
-# watch()
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)

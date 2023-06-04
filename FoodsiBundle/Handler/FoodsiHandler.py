@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from Core.File.FileHandler import FileHandler
 from Core.Utils.CoordinatesManager import CoordinatesManager
@@ -33,6 +34,7 @@ class FoodsiHandler:
         available_amount = get_available_amount(item_data)
         self._stock = item_data
 
+        logging.info(f"{datetime.now().strftime('%H:%M:%S')} - Foodsi: 200(OK). Items with stock: {available_amount} All items: {len(item_data)}")
         print(f"{datetime.now().strftime('%H:%M:%S')} - Foodsi: 200(OK). Items with stock: {available_amount} All items: {len(item_data)}")
         return item_data
 
