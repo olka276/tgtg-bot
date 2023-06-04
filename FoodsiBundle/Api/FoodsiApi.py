@@ -1,5 +1,7 @@
 import json
 import requests
+
+from Core.Exception.ConfigException import ConfigException
 from FoodsiBundle.Parser import FoodsiApiResponseParser
 from Core.Config.ConfigGetter import get_config_value
 
@@ -22,6 +24,9 @@ def fetch_items():
         }
     }
     credentials = get_config_value("foodsi")
+
+    if not credentials:
+        raise ConfigException('Add foodsi credentials to config.json')
 
     foodsi_login = requests.post(
         'https://api.foodsi.pl/api/v2/auth/sign_in',
