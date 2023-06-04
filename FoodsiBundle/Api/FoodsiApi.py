@@ -25,7 +25,7 @@ def fetch_items():
     }
     credentials = get_config_value("foodsi")
 
-    if not credentials:
+    if not credentials["email"] or not credentials["password"]:
         raise ConfigException('Add foodsi credentials to config.json')
 
     foodsi_login = requests.post(
