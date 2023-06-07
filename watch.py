@@ -32,11 +32,11 @@ def hello():
         }
 
         FileHandler(CONFIG_PATH).save(config)
-    print(os.getcwd())
-
-    print("[1] Start watching")
-    print("[2] Add chat ID")
-    option = input("")
+    # print(os.getcwd())
+    #
+    # print("[1] Start watching")
+    # print("[2] Add chat ID")
+    # option = input("")
     #
     # if option == "2":
     #     config = get_config_value()
