@@ -818,3 +818,5 @@ INFO:root:07/06/2023 18:52:58 - TGTG: 200(OK). Items: 79
 INFO:root:07/06/2023 18:52:58 - Foodsi: 200(OK). Items with stock: 0 All items: 15
 INFO:root:07/06/2023 18:53:40 - TGTG: 200(OK). Items: 79
 INFO:root:07/06/2023 18:53:42 - Foodsi: 200(OK). Items with stock: 0 All items: 15
+INFO:root:07/06/2023 19:01:54 - TGTG: 200(OK). Items: 78
+INFO:root:07/06/2023 19:01:55 - Foodsi: 200(OK). Items with stock: 0 All items: 15
