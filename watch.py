@@ -1,7 +1,10 @@
 import logging
+import os
 import time
 import traceback
+
 import schedule
+from urllib3.exceptions import ProtocolError
 
 from Core.Config.ConfigGetter import get_config_value
 from Core.File.FileHandler import FileHandler
@@ -17,7 +20,7 @@ foodsi_handler = FoodsiHandler()
 
 
 def hello():
-    logging.basicConfig(filename='logs.log', level=logging.INFO)
+    logging.basicConfig(filename=os.getcwd() + '/logs.log', level=logging.INFO)
     # print("Hello! Welcome to FoodBot.")
     config = get_config_value()
     if len(config["telegram"]["bot_token"]) == 0:
@@ -29,27 +32,38 @@ def hello():
         }
 
         FileHandler(CONFIG_PATH).save(config)
-    #
-    # print("[1] Start watching")
-    # print("[2] Add chat ID")
-    # option = input("")
-    #
-    # if option == "2":
-    #     config = get_config_value()
-    #     TelegramApi.add_bot_chat_id(config)
-    # elif option == "1":
-    schedule.every(15).seconds.do(watch)
-    watch()
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    print(os.getcwd())
+
+    print("[1] Start watching")
+    print("[2] Add chat ID")
+    option = input("")
+
+    if option == "2":
+        config = get_config_value()
+        TelegramApi.add_bot_chat_id(config)
+    elif option == "1":
+        schedule.every(15).seconds.do(watch)
+        watch()
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
 
 
 def watch():
+    errors = 0
     try:
         tgtg_handler.handle()
         foodsi_handler.handle()
-    except:
+    except ProtocolError:
+        errors += 1
+        TelegramApi.send("Protocol error, trying to run again...")
+        watch()
+    except ConnectionError:
+        errors += 1
+        TelegramApi.send("Connection error, trying to run again...")
+        watch()
+    except Exception:
+        TelegramApi.send("An error occurred. Check service.")
         logging.error(traceback.format_exc())
         print(traceback.format_exc())
 

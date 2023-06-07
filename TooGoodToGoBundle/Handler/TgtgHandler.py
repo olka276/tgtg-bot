@@ -20,6 +20,6 @@ class TgtgHandler:
         item_data = TgtgAPI.fetch_items(client, coordinates["latitude"], coordinates["longitude"], coordinates["radius"])
         StockService.compare(self._stock, item_data)
         self._stock = item_data
-        logging.info(f"{datetime.now().strftime('%H:%M:%S')} - TGTG: 200(OK). Items: {len(item_data)}")
-        print(f"{datetime.now().strftime('%H:%M:%S')} - TGTG: 200(OK). Items: {len(item_data)}")
+        logging.info(f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - TGTG: 200(OK). Items: {len(item_data)}")
+        print(f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - TGTG: 200(OK). Items: {len(item_data)}")
         return item_data
