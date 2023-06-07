@@ -42,6 +42,8 @@ def hello():
         config = get_config_value()
         TelegramApi.add_bot_chat_id(config)
     elif option == "1":
+        schedule.every(3).hours.do(reporter)
+        reporter()
         schedule.every(15).seconds.do(watch)
         watch()
         while True:
@@ -66,6 +68,10 @@ def watch():
         TelegramApi.send("An error occurred. Check service.")
         logging.error(traceback.format_exc())
         print(traceback.format_exc())
+
+
+def reporter():
+    TelegramApi.send("Working.")
 
 
 hello()
