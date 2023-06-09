@@ -65,9 +65,10 @@ def watch():
         TelegramApi.send("Connection error, trying to run again...")
         watch()
     except Exception:
-        TelegramApi.send("An error occurred. Check service.")
+        TelegramApi.send("❗ An error occurred. Check service.")
         logging.error(traceback.format_exc())
         print(traceback.format_exc())
+        watch()
 
 
 def reporter():
