@@ -44,7 +44,7 @@ def hello():
     # elif option == "1":
     schedule.every(3).hours.do(reporter)
     reporter()
-    schedule.every(15).seconds.do(watch)
+    schedule.every(20).seconds.do(watch)
     watch()
     while True:
         schedule.run_pending()
@@ -65,7 +65,7 @@ def watch():
         TelegramApi.send("Connection error, trying to run again...")
         watch()
     except Exception:
-        TelegramApi.send("❗ An error occurred. Check service.")
+        TelegramApi.send(f"❗ An error occurred. Check service.")
         logging.error(traceback.format_exc())
         print(traceback.format_exc())
         watch()
