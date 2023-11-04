@@ -30,7 +30,6 @@ class FoodsiHandler:
 
         item_data = fetch_items()
         StockService.compare(self._stock, item_data)
-
         available_amount = get_available_amount(item_data)
         self._stock = item_data
 

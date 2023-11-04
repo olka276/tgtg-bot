@@ -4,7 +4,7 @@ from typing import NamedTuple
 class ItemDTO(NamedTuple):
     id: int
     name: str
-    url: str
+    url: str or None
     address: str or None
     amount: int
     current_price: float
